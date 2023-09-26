@@ -151,7 +151,7 @@ hb_BHF <- function(formula, data_unit, data_area, id_area, iter.update = 3, iter
 
     data_area$idx <- 1:m
     area_sampled <- na.omit(data_area)
-    area_ns <- dplyr::filter(data_area, is.na(y))
+    area_ns <- dplyr::filter(data_area, !idx %in% area_sampled$idx)
     m1 <- nrow(area_sampled)
     m2 <- nrow(area_ns)
     r <- c(area_sampled$idx, area_ns$idx)
