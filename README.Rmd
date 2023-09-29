@@ -56,3 +56,9 @@ plot(pressure)
 ```
 
 In that case, don't forget to commit and push the resulting figure files, so they display on GitHub and CRAN.
+
+# Referensi
+
+-   Battese, G. E., Harter, R. M., & Fuller, W. A. (1988). An error-components model for prediction of county crop areas using survey and satellite data. Journal of the American Statistical Association, 83(401), 28-36.
+
+-   Rao, J. N., & Molina, I. (2015). Small area estimation. John Wiley & Sons.

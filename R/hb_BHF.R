@@ -27,10 +27,6 @@
 #' @export
 #' @examples
 #' library(dplyr)
-#' library(sae)
-#'
-#' data(cornsoybean)
-#' data(cornsoybeanmeans)
 #'
 #' Xarea <- cornsoybeanmeans %>%
 #'    dplyr::select(
@@ -40,11 +36,11 @@
 #'    )
 #'
 #' corn_model <- hb_BHF(
-#'  CornHec ~ SoyBeansPix + CornPix,
-#'  data_unit = cornsoybean,
-#'  data_area = Xarea,
-#'  domain = "County",
-#'  iter.update = 20
+#'    CornHec ~ SoyBeansPix + CornPix,
+#'    data_unit = cornsoybean,
+#'    data_area = Xarea,
+#'    domain = "County",
+#'    iter.update = 20
 #' )
 #'
 

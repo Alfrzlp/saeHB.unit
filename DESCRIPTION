@@ -18,3 +18,5 @@ Imports:
     rjags,
     stats
 RoxygenNote: 7.2.0
+Depends: 
+    R (>= 2.10)
