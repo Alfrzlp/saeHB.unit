@@ -1,13 +1,63 @@
-hb_BHF <- function(formula, data_unit, data_area, id_area, iter.update = 3, iter.mcmc = 10000, coef, var.coef, thin = 3, burn.in = 2000, tau.u = 1, seed = 1){
+#' Basic Unit Level Model (Battese-Harter-Fuller model) using Hierarchical Bayesian Approach
+#'
+#' @description Unit level model
+#'
+#' @references
+#' \enumerate{
+#'  \item Battese, G. E., Harter, R. M., & Fuller, W. A. (1988). An error-components model for prediction of county crop areas using survey and satellite data. Journal of the American Statistical Association, 83(401), 28-36.
+#'  \item Rao, J. N., & Molina, I. (2015). Small area estimation. John Wiley & Sons.
+#' }
+#'
+#' @param formula an object of class formula that contains a description of the model to be fitted. The variables included in the formula must be contained in the data.
+#' @param data_unit data frame containing the variables named in formula and domain
+#' @param data_area data frame containing the variables named in formula and domain. Each remaining column contains the population means of each of the p auxiliary variables for the D domains.
+#' @param domain Character or Formula class
+#' @param iter.update Number of updates with default 3
+#' @param iter.mcmc Number of total iterations per chain with default 10000
+#' @param coef a vector contains prior initial value of Coefficient of Regression Model for fixed effect with default vector of 0 with the length of the number of regression coefficients
+#' @param var.coef a vector contains prior initial value of variance of Coefficient of Regression Model with default vector of 1 with the length of the number of regression coefficients
+#' @param thin Thinning rate, must be a positive integer with default 2
+#' @param burn.in Number of iterations to discard at the beginning with default 2000
+#' @param tau.u Prior initial value of inverse of Variance of area random effect with default 1
+#' @param seed a single value, interpreted as an integer
+#' @param quiet if TRUE then messages generated during compilation will be suppressed (default TRUE)
+#'
+#' @return list contains estimation, random effect variance, coefficient, and mcmc_result
+#'
+#' @export
+#' @examples
+#' library(dplyr)
+#' library(sae)
+#'
+#' data(cornsoybean)
+#' data(cornsoybeanmeans)
+#'
+#' Xarea <- cornsoybeanmeans %>%
+#'    dplyr::select(
+#'       County = CountyIndex,
+#'       CornPix = MeanCornPixPerSeg,
+#'       SoyBeansPix = MeanSoyBeansPixPerSeg
+#'    )
+#'
+#' corn_model <- hb_BHF(
+#'  CornHec ~ SoyBeansPix + CornPix,
+#'  data_unit = cornsoybean,
+#'  data_area = Xarea,
+#'  domain = "County",
+#'  iter.update = 20
+#' )
+#'
+
+hb_BHF <- function(formula, data_unit, data_area, domain, iter.update = 3, iter.mcmc = 10000, coef, var.coef, thin = 3, burn.in = 2000, tau.u = 1, seed = 1, quiet = TRUE){
   result <- list(Est = NA, refVar = NA, coefficient = NA, result_mcmc = NA)
-  formuladata <- model.frame(formula, data_unit, na.action = NULL)
+  formuladata <- stats::model.frame(formula, data_unit, na.action = NULL)
 
   # Pengecekan input ---------------------
   if (any(is.na(formuladata[, -1]))) {
     stop("Auxiliary Variables contains NA values.")
   }
-  auxVar <- as.matrix(formuladata[, -1])
-  nvar <- ncol(auxVar) + 1
+  # banyaknya variabel (termasuk Beta0)
+  nvar <- ncol(formuladata)
 
   if (!missing(var.coef)) {
     if (length(var.coef) != nvar) {
@@ -31,21 +81,25 @@ hb_BHF <- function(formula, data_unit, data_area, id_area, iter.update = 3, iter
   }
 
 
+  cli::cli_progress_bar(
+    total = iter.update,
+    format = "Update {iter}/{iter.update} | {cli::pb_bar} {cli::pb_percent} | ETA: {cli::pb_eta}"
+  )
+
   # Model ------------------
   # Jika tidak ada NA
   if (!any(is.na(formuladata[, 1]))) {
-    formuladata <- as.matrix(na.omit(formuladata))
+    formuladata <- as.matrix(stats::na.omit(formuladata))
 
     J <- nrow(data_unit)
-    d <- .get_variable(data_unit, id_area)
+    d <- .get_variable(data_unit, domain)
     m <- nrow(data_area)
 
-    X_unit <- model.matrix(formula, data = as.data.frame(formuladata))
+    X_unit <- stats::model.matrix(formula, data = as.data.frame(formuladata))
     X_unit <- as.matrix(X_unit)
-    X_area <- model.matrix(formula, data = as.data.frame(data_area))
+    X_area <- stats::model.matrix(stats::update(formula, NULL ~ .), data = as.data.frame(data_area))
     X_area <- as.matrix(X_area)
 
-    nvar <- ncol(X_unit)
     tau.ua <- tau.ub <- tau.ea <- tau.eb <- 1
     a.var <- 1
 
@@ -71,7 +125,6 @@ hb_BHF <- function(formula, data_unit, data_area, id_area, iter.update = 3, iter
 
 
     for (iter in 1:iter.update) {
-      cli::cli_h1("Iterasi ke-{iter}")
       dat <- list(
         nvar = nvar,
         J = J, m = m, d = d,
@@ -96,12 +149,15 @@ hb_BHF <- function(formula, data_unit, data_area, id_area, iter.update = 3, iter
       jags.m <- rjags::jags.model(
         file = textConnection(my_model),
         data = dat, inits = inits,
-        n.chains = 1, n.adapt = 500
+        n.chains = 1, n.adapt = 500, quiet = quiet
       )
 
       params <- c("mu", "a.var", "b", "tau.u", "tau.e")
-      samps1 <- rjags::coda.samples(jags.m, params, n.iter = iter.mcmc, thin = thin)
-      samps11 <- window(samps1, start = burn.in + 1, end = iter.mcmc - 1)
+      samps1 <- rjags::coda.samples(
+        jags.m, params, n.iter = iter.mcmc,
+        thin = thin, progress.bar = 'none'
+      )
+      samps11 <- stats::window(samps1, start = burn.in + 1, end = iter.mcmc - 1)
       hasil <- summary(samps11)
 
       a.var <- hasil$statistics[1]
@@ -116,6 +172,9 @@ hb_BHF <- function(formula, data_unit, data_area, id_area, iter.update = 3, iter
       tau.eb <- tau.e[1] / tau.e[2]^2
       tau.ua <- tau.u[1]^2 / tau.u[2]^2
       tau.ub <- tau.u[1] / tau.u[2]^2
+
+      Sys.sleep(2/10000)
+      cli::cli_progress_update(set = iter)
     }
 
     result_samps <- summary(samps1)
@@ -139,33 +198,34 @@ hb_BHF <- function(formula, data_unit, data_area, id_area, iter.update = 3, iter
       "MEAN", "SD", "2.5%", "25%",
       "50%", "75%", "97.5%"
     )
-    rownames(Estimation) <- .get_variable(data_area, id_area)
-    # Jika ada NA
+    rownames(Estimation) <- .get_variable(data_area, domain)
   }else{
+    # Jika ada NA
     J <- nrow(data_unit)
     m <- nrow(data_area)
 
-    unit_sampled <- na.omit(data_unit)
+    unit_sampled <- stats::na.omit(data_unit)
     M1 <- nrow(unit_sampled)
-    d1 <- .get_variable(unit_sampled, id_area)
+    d1 <- .get_variable(unit_sampled, domain)
 
     data_area$idx <- 1:m
-    area_sampled <- na.omit(data_area)
-    area_ns <- dplyr::filter(data_area, !idx %in% area_sampled$idx)
+    area_sampled <- stats::na.omit(data_area)
+    # area_ns <- dplyr::filter(data_area, !idx %in% area_sampled$idx)
+    area_ns <- data_area[-area_sampled$idx, ]
     m1 <- nrow(area_sampled)
     m2 <- nrow(area_ns)
     r <- c(area_sampled$idx, area_ns$idx)
 
-    formuladata <- model.frame(formula, data = unit_sampled, na.action = NULL)
-    X_unit <- model.matrix(formula, data = as.data.frame(formuladata))
+    formuladata <- stats::model.frame(formula, data = unit_sampled, na.action = NULL)
+    X_unit <- stats::model.matrix(formula, data = as.data.frame(formuladata))
     X_unit <- as.matrix(X_unit)
 
-    X_area <- model.matrix(formula, data = as.data.frame(area_sampled))
+    formula_x <- stats::update(formula, NULL ~ .)
+    X_area <- stats::model.matrix(formula_x, data = as.data.frame(area_sampled))
     X_area <- as.matrix(X_area)
-    X_area_ns <- model.matrix.lm(formula, data = as.data.frame(area_ns), na.action = na.pass)
+    X_area_ns <- stats::model.matrix.lm(formula_x, data = as.data.frame(area_ns), na.action = stats::na.pass)
     X_area_ns <- as.matrix(X_area_ns)
 
-    nvar <- ncol(X_unit)
     tau.ua <- tau.ub <- tau.ea <- tau.eb <- 1
     a.var <- 1
 
@@ -195,10 +255,9 @@ hb_BHF <- function(formula, data_unit, data_area, id_area, iter.update = 3, iter
 	  }"
 
     for (iter in 1:iter.update) {
-      cli::cli_h1('Iterasi ke-{iter}')
       dat <- list(
         nvar = nvar,
-        M1 = 1,
+        M1 = M1,
         m1 = m1, m2 = m2, d1 = d1,
         y = formuladata[, 1],
         x = as.matrix(X_unit[, -1]),
@@ -218,19 +277,20 @@ hb_BHF <- function(formula, data_unit, data_area, id_area, iter.update = 3, iter
         tau.e = 1
       )
 
-      jags.m <- jags.model(
+      jags.m <- rjags::jags.model(
         file = textConnection(my_model),
         data = dat, inits = inits,
-        n.chains = 1, n.adapt = 500
+        n.chains = 1, n.adapt = 500, quiet = quiet
       )
 
       params <- c("mu", "muT", "a.var", "b", "tau.u", "tau.e")
-      samps1 <- coda.samples(
+      samps1 <- rjags::coda.samples(
         jags.m, params,
-        n.iter = iter.mcmc, thin = thin
+        n.iter = iter.mcmc, thin = thin,
+        progress.bar = 'none'
       )
       # start is greater than n.adapt + burnin
-      samps11 <- window(samps1, start = burn.in + 1, end = iter.mcmc - 1)
+      samps11 <- stats::window(samps1, start = burn.in + 1, end = iter.mcmc - 1)
       hasil <- summary(samps11)
 
       a.var <- hasil$statistics[1]
@@ -245,6 +305,9 @@ hb_BHF <- function(formula, data_unit, data_area, id_area, iter.update = 3, iter
       tau.eb <- tau.e[1] / tau.e[2]^2
       tau.ua <- tau.u[1]^2 / tau.u[2]^2
       tau.ub <- tau.u[1] / tau.u[2]^2
+
+      Sys.sleep(2/10000)
+      cli::cli_progress_update(set = iter)
     }
 
 
@@ -271,7 +334,7 @@ hb_BHF <- function(formula, data_unit, data_area, id_area, iter.update = 3, iter
     )
     # urutkan hasil estimasi seperti data awal
     Estimation <- dplyr::slice(Estimation, match(1:m, r))
-    rownames(Estimation) <- .get_variable(data_area, id_area)
+    # rownames(Estimation) <- .get_variable(data_area, domain)
   }
 
   result$Est <- Estimation
@@ -281,7 +344,7 @@ hb_BHF <- function(formula, data_unit, data_area, id_area, iter.update = 3, iter
   result$result_samps <- result_samps
   class(result) <- 'saehb'
 
-  par(mar = c(2, 2, 2, 2))
+  graphics::par(mar = c(2, 2, 2, 2))
   coda::autocorr.plot(result_mcmc, col = "brown2", lwd = 2)
   plot(result_mcmc, col = "brown2", lwd = 2)
 
