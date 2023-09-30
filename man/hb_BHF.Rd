@@ -48,7 +48,7 @@ hb_BHF(
 \item{quiet}{if TRUE then messages generated during compilation will be suppressed (default TRUE)}
 }
 \value{
-list contains estimation, random effect variance, coefficient, and mcmc_result
+The function returns a list with the following objects : Estimation \code{Est}, random effect variance \code{refVar}, coefficient \code{Coefficient} and mcmc result \code{result_mcmc}
 }
 \description{
 Unit level model

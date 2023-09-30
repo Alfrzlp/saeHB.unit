@@ -1,6 +1,6 @@
 #' Basic Unit Level Model (Battese-Harter-Fuller model) using Hierarchical Bayesian Approach
 #'
-#' @description Unit level model
+#' @description This function gives the Hierarchical Bayesian (HB) based on a basic unit level model (Battese-Harter-Fuller model).
 #'
 #' @references
 #' \enumerate{
@@ -9,9 +9,9 @@
 #' }
 #'
 #' @param formula an object of class formula that contains a description of the model to be fitted. The variables included in the formula must be contained in the data.
-#' @param data_unit data frame containing the variables named in formula and domain
-#' @param data_area data frame containing the variables named in formula and domain. Each remaining column contains the population means of each of the p auxiliary variables for the D domains.
-#' @param domain Character or Formula class
+#' @param data_unit data frame containing the variables named in \code(formula) and \code(domain).
+#' @param data_area data frame containing the variables named in \code(formula) and \code(domain). Each remaining column contains the population means of each of the p auxiliary variables for the D domains.
+#' @param domain Character or formula for domain column names in unit data \code(data_unit) and area data \code(data_area). (example : "County" or ~County)
 #' @param iter.update Number of updates with default 3
 #' @param iter.mcmc Number of total iterations per chain with default 10000
 #' @param coef a vector contains prior initial value of Coefficient of Regression Model for fixed effect with default vector of 0 with the length of the number of regression coefficients
@@ -19,12 +19,13 @@
 #' @param thin Thinning rate, must be a positive integer with default 2
 #' @param burn.in Number of iterations to discard at the beginning with default 2000
 #' @param tau.u Prior initial value of inverse of Variance of area random effect with default 1
-#' @param seed a single value, interpreted as an integer
-#' @param quiet if TRUE then messages generated during compilation will be suppressed (default TRUE)
+#' @param seed number used to initialize a pseudorandom number generator (default seed = 1). The random number generator method used is "base::Wichmann-Hill".
+#' @param quiet if TRUE then messages generated during compilation will be suppressed (default TRUE).
 #'
-#' @return list contains estimation, random effect variance, coefficient, and mcmc_result
+#' @return The function returns a list with the following objects : Estimation \code{Est}, random effect variance \code{refVar}, beta coefficient \code{Coefficient} and MCMC result \code{result_mcmc}
 #'
 #' @export
+#'
 #' @examples
 #' library(dplyr)
 #'
@@ -76,11 +77,24 @@ hb_BHF <- function(formula, data_unit, data_area, domain, iter.update = 3, iter.
     stop("the number of iteration updates at least 3 times")
   }
 
+  if (quiet) {
+    cli::cli_progress_bar(
+      total = iter.update,
+      format = "Update {iter}/{iter.update} | {cli::pb_bar} {cli::pb_percent} | ETA: {cli::pb_eta} \n"
+    )
+    my_env <- environment()
+    default_pb <- "none"
+    update_progress <- function(iter, iter.update){
+      Sys.sleep(2/10000)
+      cli::cli_progress_update(set = iter, .envir = my_env)
+    }
+  }else{
+    default_pb <- "text"
+    update_progress <- function(iter, iter.update){
+      cli::cli_h1('Update {iter}/{iter.update}')
+    }
+  }
 
-  cli::cli_progress_bar(
-    total = iter.update,
-    format = "Update {iter}/{iter.update} | {cli::pb_bar} {cli::pb_percent} | ETA: {cli::pb_eta}"
-  )
 
   # Model ------------------
   # Jika tidak ada NA
@@ -121,6 +135,8 @@ hb_BHF <- function(formula, data_unit, data_area, domain, iter.update = 3, iter.
 
 
     for (iter in 1:iter.update) {
+      update_progress(iter, iter.update)
+
       dat <- list(
         nvar = nvar,
         J = J, m = m, d = d,
@@ -145,13 +161,14 @@ hb_BHF <- function(formula, data_unit, data_area, domain, iter.update = 3, iter.
       jags.m <- rjags::jags.model(
         file = textConnection(my_model),
         data = dat, inits = inits,
-        n.chains = 1, n.adapt = 500, quiet = quiet
+        n.chains = 1, n.adapt = 500,
+        quiet = quiet
       )
 
       params <- c("mu", "a.var", "b", "tau.u", "tau.e")
       samps1 <- rjags::coda.samples(
         jags.m, params, n.iter = iter.mcmc,
-        thin = thin, progress.bar = 'none'
+        thin = thin, progress.bar = default_pb
       )
       samps11 <- stats::window(samps1, start = burn.in + 1, end = iter.mcmc - 1)
       hasil <- summary(samps11)
@@ -168,9 +185,6 @@ hb_BHF <- function(formula, data_unit, data_area, domain, iter.update = 3, iter.
       tau.eb <- tau.e[1] / tau.e[2]^2
       tau.ua <- tau.u[1]^2 / tau.u[2]^2
       tau.ub <- tau.u[1] / tau.u[2]^2
-
-      Sys.sleep(2/10000)
-      cli::cli_progress_update(set = iter)
     }
 
     result_samps <- summary(samps1)
@@ -251,6 +265,7 @@ hb_BHF <- function(formula, data_unit, data_area, domain, iter.update = 3, iter.
 	  }"
 
     for (iter in 1:iter.update) {
+      update_progress(iter, iter.update)
       dat <- list(
         nvar = nvar,
         M1 = M1,
@@ -283,7 +298,7 @@ hb_BHF <- function(formula, data_unit, data_area, domain, iter.update = 3, iter.
       samps1 <- rjags::coda.samples(
         jags.m, params,
         n.iter = iter.mcmc, thin = thin,
-        progress.bar = 'none'
+        progress.bar = default_pb
       )
       # start is greater than n.adapt + burnin
       samps11 <- stats::window(samps1, start = burn.in + 1, end = iter.mcmc - 1)
@@ -301,9 +316,6 @@ hb_BHF <- function(formula, data_unit, data_area, domain, iter.update = 3, iter.
       tau.eb <- tau.e[1] / tau.e[2]^2
       tau.ua <- tau.u[1]^2 / tau.u[2]^2
       tau.ub <- tau.u[1] / tau.u[2]^2
-
-      Sys.sleep(2/10000)
-      cli::cli_progress_update(set = iter)
     }
 
 
@@ -337,7 +349,6 @@ hb_BHF <- function(formula, data_unit, data_area, domain, iter.update = 3, iter.
   result$coefficient <- beta
   result$refVar <- a.var
   result$result_mcmc <- result_mcmc
-  result$result_samps <- result_samps
   class(result) <- 'saehb'
 
   graphics::par(mar = c(2, 2, 2, 2))
