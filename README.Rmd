@@ -37,7 +37,7 @@ Or you can install cran version with
 # install.packages(saeHB.unit)
 ```
 
-## Example
+## Example 1
 
 This is a basic example which shows you how to solve a common problem:
 
@@ -68,6 +68,8 @@ corn_model <- hb_BHF(
    iter.update = 20
 )
 ```
+
+## Example 2
 
 # References
 

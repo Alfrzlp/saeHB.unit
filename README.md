@@ -24,8 +24,39 @@ You can install the development version of saeHB.unit from
 ``` r
 # install.packages("devtools")
 devtools::install_github("Alfrzlp/saeHB.unit")
-#> Skipping install of 'saeHB.unit' from a github remote, the SHA1 (98e8bda4) has not changed since last install.
-#>   Use `force = TRUE` to force installation
+#> Downloading GitHub repo Alfrzlp/saeHB.unit@HEAD
+#> rjags (4-13  -> 4-14 ) [CRAN]
+#> dplyr (1.1.2 -> 1.1.3) [CRAN]
+#> Installing 2 packages: rjags, dplyr
+#> Installing packages into 'C:/Users/alfrz/AppData/Local/R/win-library/4.2'
+#> (as 'lib' is unspecified)
+#> package 'rjags' successfully unpacked and MD5 sums checked
+#> Warning: cannot remove prior installation of package 'rjags'
+#> Warning in file.copy(savedcopy, lib, recursive = TRUE): problem copying
+#> C:\Users\alfrz\AppData\Local\R\win-library\4.2\00LOCK\rjags\libs\x64\rjags.dll
+#> to C:\Users\alfrz\AppData\Local\R\win-library\4.2\rjags\libs\x64\rjags.dll:
+#> Permission denied
+#> Warning: restored 'rjags'
+#> package 'dplyr' successfully unpacked and MD5 sums checked
+#> Warning: cannot remove prior installation of package 'dplyr'
+#> Warning in file.copy(savedcopy, lib, recursive = TRUE): problem copying
+#> C:\Users\alfrz\AppData\Local\R\win-library\4.2\00LOCK\dplyr\libs\x64\dplyr.dll
+#> to C:\Users\alfrz\AppData\Local\R\win-library\4.2\dplyr\libs\x64\dplyr.dll:
+#> Permission denied
+#> Warning: restored 'dplyr'
+#> 
+#> The downloaded binary packages are in
+#>  C:\Users\alfrz\AppData\Local\Temp\RtmpKqOgTM\downloaded_packages
+#>          checking for file 'C:\Users\alfrz\AppData\Local\Temp\RtmpKqOgTM\remotes1a0436be2063\Alfrzlp-saeHB.unit-cce361f/DESCRIPTION' ...  ✔  checking for file 'C:\Users\alfrz\AppData\Local\Temp\RtmpKqOgTM\remotes1a0436be2063\Alfrzlp-saeHB.unit-cce361f/DESCRIPTION' (617ms)
+#>       ─  preparing 'saeHB.unit':
+#>    checking DESCRIPTION meta-information ...     checking DESCRIPTION meta-information ...   ✔  checking DESCRIPTION meta-information
+#>       ─  checking for LF line-endings in source and make files and shell scripts
+#>   ─  checking for empty or unneeded directories
+#>   ─  building 'saeHB.unit_0.1.0.tar.gz'
+#>      
+#> 
+#> Installing package into 'C:/Users/alfrz/AppData/Local/R/win-library/4.2'
+#> (as 'lib' is unspecified)
 ```
 
 Or you can install cran version with
@@ -34,7 +65,7 @@ Or you can install cran version with
 # install.packages(saeHB.unit)
 ```
 
-## Example
+## Example 1
 
 This is a basic example which shows you how to solve a common problem:
 
@@ -98,6 +129,8 @@ corn_model <- hb_BHF(
     #> intercept   1.6317
     #> SoyBeansPix 0.0132
     #> CornPix     0.4053
+
+## Example 2
 
 # References
 
