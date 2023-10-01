@@ -23,11 +23,11 @@ hb_BHF(
 \arguments{
 \item{formula}{an object of class formula that contains a description of the model to be fitted. The variables included in the formula must be contained in the data.}
 
-\item{data_unit}{data frame containing the variables named in formula and domain}
+\item{data_unit}{data frame containing the variables named in \code{formula} and \code{domain}.}
 
-\item{data_area}{data frame containing the variables named in formula and domain. Each remaining column contains the population means of each of the p auxiliary variables for the D domains.}
+\item{data_area}{data frame containing the variables named in \code{formula} and \code{domain}. Each remaining column contains the population means of each of the p auxiliary variables for the D domains.}
 
-\item{domain}{Character or Formula class}
+\item{domain}{Character or formula for domain column names in unit data \code{data_unit} and area data \code{data_area}. (example : "County" or ~County)}
 
 \item{iter.update}{Number of updates with default 3}
 
@@ -43,15 +43,15 @@ hb_BHF(
 
 \item{tau.u}{Prior initial value of inverse of Variance of area random effect with default 1}
 
-\item{seed}{a single value, interpreted as an integer}
+\item{seed}{number used to initialize a pseudorandom number generator (default seed = 1). The random number generator method used is "base::Wichmann-Hill".}
 
-\item{quiet}{if TRUE then messages generated during compilation will be suppressed (default TRUE)}
+\item{quiet}{if TRUE then messages generated during compilation will be suppressed (default TRUE).}
 }
 \value{
-The function returns a list with the following objects : Estimation \code{Est}, random effect variance \code{refVar}, coefficient \code{Coefficient} and mcmc result \code{result_mcmc}
+The function returns a list with the following objects : Estimation \code{Est}, random effect variance \code{refVar}, beta coefficient \code{Coefficient} and MCMC result \code{result_mcmc}
 }
 \description{
-Unit level model
+This function gives the Hierarchical Bayesian (HB) based on a basic unit level model (Battese-Harter-Fuller model).
 }
 \examples{
 library(dplyr)

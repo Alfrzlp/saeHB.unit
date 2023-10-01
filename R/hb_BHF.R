@@ -9,9 +9,9 @@
 #' }
 #'
 #' @param formula an object of class formula that contains a description of the model to be fitted. The variables included in the formula must be contained in the data.
-#' @param data_unit data frame containing the variables named in \code(formula) and \code(domain).
-#' @param data_area data frame containing the variables named in \code(formula) and \code(domain). Each remaining column contains the population means of each of the p auxiliary variables for the D domains.
-#' @param domain Character or formula for domain column names in unit data \code(data_unit) and area data \code(data_area). (example : "County" or ~County)
+#' @param data_unit data frame containing the variables named in \code{formula} and \code{domain}.
+#' @param data_area data frame containing the variables named in \code{formula} and \code{domain}. Each remaining column contains the population means of each of the p auxiliary variables for the D domains.
+#' @param domain Character or formula for domain column names in unit data \code{data_unit} and area data \code{data_area}. (example : "County" or ~County)
 #' @param iter.update Number of updates with default 3
 #' @param iter.mcmc Number of total iterations per chain with default 10000
 #' @param coef a vector contains prior initial value of Coefficient of Regression Model for fixed effect with default vector of 0 with the length of the number of regression coefficients
