@@ -342,7 +342,7 @@ hb_BHF <- function(formula, data_unit, data_area, domain, iter.update = 3, iter.
     )
     # urutkan hasil estimasi seperti data awal
     Estimation <- dplyr::slice(Estimation, match(1:m, r))
-    # rownames(Estimation) <- .get_variable(data_area, domain)
+    rownames(Estimation) <- .get_variable(data_area, domain)
   }
 
   result$Est <- Estimation

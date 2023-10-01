@@ -23,7 +23,7 @@ You can install the development version of saeHB.unit from
 ``` r
 # install.packages("devtools")
 devtools::install_github("Alfrzlp/saeHB.unit")
-#> Skipping install of 'saeHB.unit' from a github remote, the SHA1 (4360f55f) has not changed since last install.
+#> Skipping install of 'saeHB.unit' from a github remote, the SHA1 (d6e6fc12) has not changed since last install.
 #>   Use `force = TRUE` to force installation
 ```
 
@@ -87,7 +87,7 @@ corn_model <- hb_BHF(
 )
 ```
 
-<img src="man/figures/README-unnamed-chunk-6-1.png" width="100%" /><img src="man/figures/README-unnamed-chunk-6-2.png" width="100%" />
+<img src="man/figures/README-unnamed-chunk-6-1.png" width="50%" /><img src="man/figures/README-unnamed-chunk-6-2.png" width="50%" />
 
     #>                   Mean         SD       2.5%        25%        50%        75%
     #> intercept    0.1552265  0.7415844 -1.3078113 -0.3262636  0.1458748  0.6601395
