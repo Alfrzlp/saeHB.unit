@@ -2,7 +2,6 @@
 #'
 #' @param object HB model
 #' @param ... other argument
-#'
 #' @return plot
 #'
 #' @examples

@@ -6,8 +6,7 @@ output: github_document
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  fig.path = "man/figures/README-",
-  out.width = "50%"
+  fig.path = "man/figures/README-"
 )
 ```
 
@@ -106,7 +105,7 @@ hb_model <- hb_BHF(
   data_unit = dummy_unit,
   data_area = dummy_area,
   domain = "domain",
-  iter.update = 3,
+  iter.update = 30,
   plot = FALSE
 )
 ```
@@ -120,7 +119,7 @@ saeHB.unit::autoplot(hb_model)
 summary(hb_model)
 ```
 
-```{r}
+```{r, dpi=500, fig.height=3, fig.width=7}
 data.frame(
   id = 1:30,
   hb = hb_model$Est$MEAN,

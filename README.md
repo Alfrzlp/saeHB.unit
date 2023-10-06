@@ -108,7 +108,7 @@ corn_model <- hb_BHF(
 )
 ```
 
-<img src="man/figures/README-unnamed-chunk-7-1.png" width="50%" /><img src="man/figures/README-unnamed-chunk-7-2.png" width="50%" />
+![](man/figures/README-unnamed-chunk-7-1.png)<!-- -->![](man/figures/README-unnamed-chunk-7-2.png)<!-- -->
 
     #>                   Mean         SD       2.5%        25%        50%        75%
     #> intercept    0.1552265  0.7415844 -1.3078113 -0.3262636  0.1458748  0.6601395
@@ -153,12 +153,98 @@ hb_model <- hb_BHF(
   data_unit = dummy_unit,
   data_area = dummy_area,
   domain = "domain",
-  iter.update = 3,
+  iter.update = 30,
   plot = FALSE
 )
 #> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
 #> Variable muT not found
-#> Update 2/3 | ■■■■■■■■■■■■■■■■■■■■■ 67% | ETA: 2s
+#> Update 2/30 | ■■■ 7% | ETA: 1m
+#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
+#> Variable muT not found
+#> Update 3/30 | ■■■■ 10% | ETA: 1m
+#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
+#> Variable muT not found
+#> Update 4/30 | ■■■■■ 13% | ETA: 1m
+#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
+#> Variable muT not found
+#> Update 5/30 | ■■■■■■ 17% | ETA: 1m
+#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
+#> Variable muT not found
+#> Update 6/30 | ■■■■■■■ 20% | ETA: 1m
+#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
+#> Variable muT not found
+#> Update 7/30 | ■■■■■■■■ 23% | ETA: 1m
+#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
+#> Variable muT not found
+#> Update 8/30 | ■■■■■■■■■ 27% | ETA: 1m
+#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
+#> Variable muT not found
+#> Update 9/30 | ■■■■■■■■■■ 30% | ETA: 1m
+#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
+#> Variable muT not found
+#> Update 10/30 | ■■■■■■■■■■■ 33% | ETA: 1m
+#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
+#> Variable muT not found
+#> Update 11/30 | ■■■■■■■■■■■■ 37% | ETA: 1m
+#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
+#> Variable muT not found
+#> Update 12/30 | ■■■■■■■■■■■■■ 40% | ETA: 1m
+#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
+#> Variable muT not found
+#> Update 13/30 | ■■■■■■■■■■■■■■ 43% | ETA: 1m
+#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
+#> Variable muT not found
+#> Update 14/30 | ■■■■■■■■■■■■■■■ 47% | ETA: 1m
+#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
+#> Variable muT not found
+#> Update 15/30 | ■■■■■■■■■■■■■■■■ 50% | ETA: 1m
+#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
+#> Variable muT not found
+#> Update 16/30 | ■■■■■■■■■■■■■■■■■ 53% | ETA: 1m
+#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
+#> Variable muT not found
+#> Update 17/30 | ■■■■■■■■■■■■■■■■■■ 57% | ETA: 1m
+#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
+#> Variable muT not found
+#> Update 18/30 | ■■■■■■■■■■■■■■■■■■■ 60% | ETA: 50s
+#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
+#> Variable muT not found
+#> Update 19/30 | ■■■■■■■■■■■■■■■■■■■■ 63% | ETA: 46s
+#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
+#> Variable muT not found
+#> Update 20/30 | ■■■■■■■■■■■■■■■■■■■■■ 67% | ETA: 42s
+#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
+#> Variable muT not found
+#> Update 21/30 | ■■■■■■■■■■■■■■■■■■■■■■ 70% | ETA: 38s
+#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
+#> Variable muT not found
+#> Update 22/30 | ■■■■■■■■■■■■■■■■■■■■■■■ 73% | ETA: 34s
+#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
+#> Variable muT not found
+#> Update 23/30 | ■■■■■■■■■■■■■■■■■■■■■■■■ 77% | ETA: 30s
+#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
+#> Variable muT not found
+#> Update 24/30 | ■■■■■■■■■■■■■■■■■■■■■■■■■ 80% | ETA: 25s
+#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
+#> Variable muT not found
+#> Update 25/30 | ■■■■■■■■■■■■■■■■■■■■■■■■■■ 83% | ETA:
+#> 21s
+#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
+#> Variable muT not found
+#> Update 26/30 | ■■■■■■■■■■■■■■■■■■■■■■■■■■■ 87% | ETA:
+#> 17s
+#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
+#> Variable muT not found
+#> Update 27/30 | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 90% |
+#> ETA: 13s
+#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
+#> Variable muT not found
+#> Update 28/30 | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 93% |
+#> ETA: 8s
+#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
+#> Variable muT not found
+#> Update 29/30 | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 97%
+#> | ETA: 4s
 #> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
 #> Variable muT not found
 #> 
@@ -166,14 +252,10 @@ hb_model <- hb_BHF(
 #> Variable muT not found
 #> 
 #> ── Coefficient ─────────────────────────────────────────────────────────────────
-#>                 Mean         SD       2.5%        25%        50%        75%
-#> intercept  0.4044935  0.2358621 -0.0550389  0.2466681  0.4061837  0.5553452
-#> x1         2.0295961  0.0085505  2.0126175  2.0238250  2.0297599  2.0353899
-#> x2         3.0230870  0.0087166  3.0059628  3.0171467  3.0232792  3.0290586
-#>            97.5%
-#> intercept 0.8696
-#> x1        2.0463
-#> x2        3.0394
+#>                Mean        SD      2.5%       25%       50%       75%  97.5%
+#> intercept 0.3888520 0.0603124 0.2736811 0.3463387 0.3884280 0.4297975 0.5090
+#> x1        2.0298767 0.0023656 2.0253100 2.0283008 2.0298457 2.0314584 2.0346
+#> x2        3.0232782 0.0021441 3.0189985 3.0218045 3.0232850 3.0248043 3.0273
 ```
 
 ## Autocorelation, Trace and Density plot
@@ -182,19 +264,15 @@ hb_model <- hb_BHF(
 saeHB.unit::autoplot(hb_model)
 ```
 
-<img src="man/figures/README-unnamed-chunk-11-1.png" width="50%" /><img src="man/figures/README-unnamed-chunk-11-2.png" width="50%" />
+![](man/figures/README-unnamed-chunk-11-1.png)<!-- -->![](man/figures/README-unnamed-chunk-11-2.png)<!-- -->
 \## Coefficients
 
 ``` r
 summary(hb_model)
-#>                 Mean         SD       2.5%        25%        50%        75%
-#> intercept  0.4044935  0.2358621 -0.0550389  0.2466681  0.4061837  0.5553452
-#> x1         2.0295961  0.0085505  2.0126175  2.0238250  2.0297599  2.0353899
-#> x2         3.0230870  0.0087166  3.0059628  3.0171467  3.0232792  3.0290586
-#>            97.5%
-#> intercept 0.8696
-#> x1        2.0463
-#> x2        3.0394
+#>                Mean        SD      2.5%       25%       50%       75%  97.5%
+#> intercept 0.3888520 0.0603124 0.2736811 0.3463387 0.3884280 0.4297975 0.5090
+#> x1        2.0298767 0.0023656 2.0253100 2.0283008 2.0298457 2.0314584 2.0346
+#> x2        3.0232782 0.0021441 3.0189985 3.0218045 3.0232850 3.0248043 3.0273
 ```
 
 ``` r
@@ -218,7 +296,7 @@ data.frame(
   )
 ```
 
-<img src="man/figures/README-unnamed-chunk-13-1.png" width="50%" />
+![](man/figures/README-unnamed-chunk-13-1.png)<!-- -->
 
 # References
 
