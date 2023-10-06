@@ -17,7 +17,8 @@ hb_BHF(
   burn.in = 2000,
   tau.u = 1,
   seed = 1,
-  quiet = TRUE
+  quiet = TRUE,
+  plot = TRUE
 )
 }
 \arguments{
@@ -45,7 +46,9 @@ hb_BHF(
 
 \item{seed}{number used to initialize a pseudorandom number generator (default seed = 1). The random number generator method used is "base::Wichmann-Hill".}
 
-\item{quiet}{if TRUE then messages generated during compilation will be suppressed (default TRUE).}
+\item{quiet}{if TRUE, then messages generated during compilation will be suppressed (default TRUE).}
+
+\item{plot}{if TRUE, the autocorrelation, trace, and density plots will be generated (default TRUE).}
 }
 \value{
 The function returns a list with the following objects : Estimation \code{Est}, random effect variance \code{refVar}, beta coefficient \code{Coefficient} and MCMC result \code{result_mcmc}

@@ -1,5 +1,4 @@
 ---
-author: Azka Ubaidillah, Ridson Al Farizal P
 output: github_document
 ---
 
@@ -20,21 +19,31 @@ knitr::opts_chunk$set(
 
 <!-- badges: end -->
 
+# Author
+
+Azka Ubaidillah, Ridson Al Farizal P
+
+# Maintainer
+
+Ridson Al Farizal P \<alfrzlp\@gmail.com\>
+
+# Description
+
 We designed this package to provide several functions for unit level of small area estimation (Battese, Harter and Fuller model) using hierarchical Bayesian (HB) method. This package also provides a dataset produced by a data generation. The `rjags` package is employed to obtain parameter estimates
 
-## Installation
+# Installation
 
 You can install the development version of saeHB.unit from [GitHub](https://github.com/) with:
 
-```{r}
-# install.packages("devtools")
+```{r, eval=FALSE}
+install.packages("devtools")
 devtools::install_github("Alfrzlp/saeHB.unit")
 ```
 
 Or you can install cran version with
 
-```{r}
-# install.packages(saeHB.unit)
+```{r, eval=FALSE}
+install.packages(saeHB.unit)
 ```
 
 ## Example 1
@@ -44,7 +53,17 @@ This is a basic example which shows you how to solve a common problem:
 ```{r warning=FALSE, message=FALSE}
 library(dplyr)
 library(saeHB.unit)
+library(ggplot2)
+library(tidyr)
 
+windowsFonts(
+  poppins = windowsFont('poppins'),
+  tnr = windowsFont('Times New Roman')
+)
+```
+
+### Data
+```{r}
 glimpse(cornsoybean)
 glimpse(cornsoybeanmeans)
 ```
@@ -58,7 +77,7 @@ Xarea <- cornsoybeanmeans %>%
    )
 head(Xarea)
 ```
-
+### Model
 ```{r echo=TRUE, message=FALSE}
 corn_model <- hb_BHF(
    CornHec ~ SoyBeansPix + CornPix,
@@ -70,6 +89,57 @@ corn_model <- hb_BHF(
 ```
 
 ## Example 2
+
+### Data
+
+```{r}
+head(dummy_unit)
+```
+
+```{r}
+head(dummy_area)
+```
+### Model
+```{r}
+hb_model <- hb_BHF(
+  formula = y_di ~ x1 + x2,
+  data_unit = dummy_unit,
+  data_area = dummy_area,
+  domain = "domain",
+  iter.update = 3,
+  plot = FALSE
+)
+```
+
+## Autocorelation, Trace and Density plot
+```{r}
+saeHB.unit::autoplot(hb_model)
+```
+## Coefficients
+```{r}
+summary(hb_model)
+```
+
+```{r}
+data.frame(
+  id = 1:30,
+  hb = hb_model$Est$MEAN,
+  parameter = dummy_area$parameter
+) %>%
+  pivot_longer(-1, names_to = "metode", values_to = "rse") %>%
+  ggplot(aes(x = id, y = rse, col = metode)) +
+  geom_line() +
+  scale_color_discrete(
+    labels = c('HB with NA', 'Parameter')
+  ) +
+  labs(col = NULL, y = 'Estimate', x = 'County', title = 'Comparison of estimates') +
+  theme(
+    text = element_text(family = 'poppins'),
+    axis.ticks.x = element_blank(),
+    plot.title = element_text(face = 2, vjust = 0),
+    plot.subtitle = element_text(colour = 'gray30', vjust = 0)
+  )
+```
 
 # References
 

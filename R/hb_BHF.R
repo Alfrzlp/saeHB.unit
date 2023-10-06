@@ -20,7 +20,8 @@
 #' @param burn.in Number of iterations to discard at the beginning with default 2000
 #' @param tau.u Prior initial value of inverse of Variance of area random effect with default 1
 #' @param seed number used to initialize a pseudorandom number generator (default seed = 1). The random number generator method used is "base::Wichmann-Hill".
-#' @param quiet if TRUE then messages generated during compilation will be suppressed (default TRUE).
+#' @param quiet if TRUE, then messages generated during compilation will be suppressed (default TRUE).
+#' @param plot if TRUE, the autocorrelation, trace, and density plots will be generated (default TRUE).
 #'
 #' @return The function returns a list with the following objects : Estimation \code{Est}, random effect variance \code{refVar}, beta coefficient \code{Coefficient} and MCMC result \code{result_mcmc}
 #'
@@ -45,7 +46,7 @@
 #' )
 #'
 
-hb_BHF <- function(formula, data_unit, data_area, domain, iter.update = 3, iter.mcmc = 10000, coef, var.coef, thin = 3, burn.in = 2000, tau.u = 1, seed = 1, quiet = TRUE){
+hb_BHF <- function(formula, data_unit, data_area, domain, iter.update = 3, iter.mcmc = 10000, coef, var.coef, thin = 3, burn.in = 2000, tau.u = 1, seed = 1, quiet = TRUE, plot = TRUE){
   result <- list(Est = NA, refVar = NA, coefficient = NA, result_mcmc = NA)
   formuladata <- stats::model.frame(formula, data_unit, na.action = NULL)
 
@@ -351,9 +352,11 @@ hb_BHF <- function(formula, data_unit, data_area, domain, iter.update = 3, iter.
   result$result_mcmc <- result_mcmc
   class(result) <- 'saehb'
 
-  graphics::par(mar = c(2, 2, 2, 2))
-  coda::autocorr.plot(result_mcmc, col = "brown2", lwd = 2)
-  plot(result_mcmc, col = "brown2", lwd = 2)
+  if (plot) {
+    graphics::par(mar = c(2, 2, 2, 2))
+    coda::autocorr.plot(result_mcmc, col = "brown2", lwd = 2)
+    plot(result_mcmc, col = "brown2", lwd = 2)
+  }
 
   cli::cli_h1('Coefficient')
   stats::printCoefmat(beta)

@@ -20,7 +20,8 @@
 #'    data_unit = cornsoybean,
 #'    data_area = Xarea,
 #'    domain = "County",
-#'    iter.update = 20
+#'    iter.update = 20,
+#'    plot = FALSE
 #' )
 #' autoplot(corn_model)
 #'

@@ -1,4 +1,3 @@
-Azka Ubaidillah, Ridson Al Farizal P
 
 # saeHB.unit
 
@@ -10,59 +9,36 @@ status](https://www.r-pkg.org/badges/version/saeHB.unit)](https://CRAN.R-project
 
 <!-- badges: end -->
 
+# Author
+
+Azka Ubaidillah, Ridson Al Farizal P
+
+# Maintainer
+
+Ridson Al Farizal P \<alfrzlp@gmail.com\>
+
+# Description
+
 We designed this package to provide several functions for unit level of
 small area estimation (Battese, Harter and Fuller model) using
 hierarchical Bayesian (HB) method. This package also provides a dataset
 produced by a data generation. The `rjags` package is employed to obtain
 parameter estimates
 
-## Installation
+# Installation
 
 You can install the development version of saeHB.unit from
 [GitHub](https://github.com/) with:
 
 ``` r
-# install.packages("devtools")
+install.packages("devtools")
 devtools::install_github("Alfrzlp/saeHB.unit")
-#> Downloading GitHub repo Alfrzlp/saeHB.unit@HEAD
-#> rjags (4-13  -> 4-14 ) [CRAN]
-#> dplyr (1.1.2 -> 1.1.3) [CRAN]
-#> Installing 2 packages: rjags, dplyr
-#> Installing packages into 'C:/Users/alfrz/AppData/Local/R/win-library/4.2'
-#> (as 'lib' is unspecified)
-#> package 'rjags' successfully unpacked and MD5 sums checked
-#> Warning: cannot remove prior installation of package 'rjags'
-#> Warning in file.copy(savedcopy, lib, recursive = TRUE): problem copying
-#> C:\Users\alfrz\AppData\Local\R\win-library\4.2\00LOCK\rjags\libs\x64\rjags.dll
-#> to C:\Users\alfrz\AppData\Local\R\win-library\4.2\rjags\libs\x64\rjags.dll:
-#> Permission denied
-#> Warning: restored 'rjags'
-#> package 'dplyr' successfully unpacked and MD5 sums checked
-#> Warning: cannot remove prior installation of package 'dplyr'
-#> Warning in file.copy(savedcopy, lib, recursive = TRUE): problem copying
-#> C:\Users\alfrz\AppData\Local\R\win-library\4.2\00LOCK\dplyr\libs\x64\dplyr.dll
-#> to C:\Users\alfrz\AppData\Local\R\win-library\4.2\dplyr\libs\x64\dplyr.dll:
-#> Permission denied
-#> Warning: restored 'dplyr'
-#> 
-#> The downloaded binary packages are in
-#>  C:\Users\alfrz\AppData\Local\Temp\RtmpKqOgTM\downloaded_packages
-#>          checking for file 'C:\Users\alfrz\AppData\Local\Temp\RtmpKqOgTM\remotes1a0436be2063\Alfrzlp-saeHB.unit-cce361f/DESCRIPTION' ...  ✔  checking for file 'C:\Users\alfrz\AppData\Local\Temp\RtmpKqOgTM\remotes1a0436be2063\Alfrzlp-saeHB.unit-cce361f/DESCRIPTION' (617ms)
-#>       ─  preparing 'saeHB.unit':
-#>    checking DESCRIPTION meta-information ...     checking DESCRIPTION meta-information ...   ✔  checking DESCRIPTION meta-information
-#>       ─  checking for LF line-endings in source and make files and shell scripts
-#>   ─  checking for empty or unneeded directories
-#>   ─  building 'saeHB.unit_0.1.0.tar.gz'
-#>      
-#> 
-#> Installing package into 'C:/Users/alfrz/AppData/Local/R/win-library/4.2'
-#> (as 'lib' is unspecified)
 ```
 
 Or you can install cran version with
 
 ``` r
-# install.packages(saeHB.unit)
+install.packages(saeHB.unit)
 ```
 
 ## Example 1
@@ -72,7 +48,18 @@ This is a basic example which shows you how to solve a common problem:
 ``` r
 library(dplyr)
 library(saeHB.unit)
+library(ggplot2)
+library(tidyr)
 
+windowsFonts(
+  poppins = windowsFont('poppins'),
+  tnr = windowsFont('Times New Roman')
+)
+```
+
+### Data
+
+``` r
 glimpse(cornsoybean)
 #> Rows: 37
 #> Columns: 5
@@ -109,6 +96,8 @@ head(Xarea)
 #> 6      6  257.17      247.13
 ```
 
+### Model
+
 ``` r
 corn_model <- hb_BHF(
    CornHec ~ SoyBeansPix + CornPix,
@@ -119,7 +108,7 @@ corn_model <- hb_BHF(
 )
 ```
 
-<img src="man/figures/README-unnamed-chunk-6-1.png" width="50%" /><img src="man/figures/README-unnamed-chunk-6-2.png" width="50%" />
+<img src="man/figures/README-unnamed-chunk-7-1.png" width="50%" /><img src="man/figures/README-unnamed-chunk-7-2.png" width="50%" />
 
     #>                   Mean         SD       2.5%        25%        50%        75%
     #> intercept    0.1552265  0.7415844 -1.3078113 -0.3262636  0.1458748  0.6601395
@@ -131,6 +120,105 @@ corn_model <- hb_BHF(
     #> CornPix     0.4053
 
 ## Example 2
+
+### Data
+
+``` r
+head(dummy_unit)
+#>      domain     y_di       x1       x2
+#> 181      d1 72.67585 13.88978 14.35716
+#> 279      d1 63.10395 10.38460 13.58800
+#> 343      d1 80.10076 16.36110 14.59864
+#> 539      d1 68.83004 13.33046 14.17516
+#> 670      d1 77.48515 18.62796 12.55454
+#> 1424     d1 78.00826 13.44454 16.34891
+```
+
+``` r
+head(dummy_area)
+#>   domain       x1       x2 parameter
+#> 1     d1 15.05076 14.96766  77.03467
+#> 2     d2 15.07153 14.98934  74.67858
+#> 3     d3 14.96426 14.94145  73.35885
+#> 4     d4 15.03803 15.02529  77.99655
+#> 5     d5 14.98165 14.99815  76.76959
+#> 6     d6 15.04244 15.00129  77.30116
+```
+
+### Model
+
+``` r
+hb_model <- hb_BHF(
+  formula = y_di ~ x1 + x2,
+  data_unit = dummy_unit,
+  data_area = dummy_area,
+  domain = "domain",
+  iter.update = 3,
+  plot = FALSE
+)
+#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
+#> Variable muT not found
+#> Update 2/3 | ■■■■■■■■■■■■■■■■■■■■■ 67% | ETA: 2s
+#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
+#> Variable muT not found
+#> 
+#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
+#> Variable muT not found
+#> 
+#> ── Coefficient ─────────────────────────────────────────────────────────────────
+#>                 Mean         SD       2.5%        25%        50%        75%
+#> intercept  0.4044935  0.2358621 -0.0550389  0.2466681  0.4061837  0.5553452
+#> x1         2.0295961  0.0085505  2.0126175  2.0238250  2.0297599  2.0353899
+#> x2         3.0230870  0.0087166  3.0059628  3.0171467  3.0232792  3.0290586
+#>            97.5%
+#> intercept 0.8696
+#> x1        2.0463
+#> x2        3.0394
+```
+
+## Autocorelation, Trace and Density plot
+
+``` r
+saeHB.unit::autoplot(hb_model)
+```
+
+<img src="man/figures/README-unnamed-chunk-11-1.png" width="50%" /><img src="man/figures/README-unnamed-chunk-11-2.png" width="50%" />
+\## Coefficients
+
+``` r
+summary(hb_model)
+#>                 Mean         SD       2.5%        25%        50%        75%
+#> intercept  0.4044935  0.2358621 -0.0550389  0.2466681  0.4061837  0.5553452
+#> x1         2.0295961  0.0085505  2.0126175  2.0238250  2.0297599  2.0353899
+#> x2         3.0230870  0.0087166  3.0059628  3.0171467  3.0232792  3.0290586
+#>            97.5%
+#> intercept 0.8696
+#> x1        2.0463
+#> x2        3.0394
+```
+
+``` r
+data.frame(
+  id = 1:30,
+  hb = hb_model$Est$MEAN,
+  parameter = dummy_area$parameter
+) %>%
+  pivot_longer(-1, names_to = "metode", values_to = "rse") %>%
+  ggplot(aes(x = id, y = rse, col = metode)) +
+  geom_line() +
+  scale_color_discrete(
+    labels = c('HB with NA', 'Parameter')
+  ) +
+  labs(col = NULL, y = 'Estimate', x = 'County', title = 'Comparison of estimates') +
+  theme(
+    text = element_text(family = 'poppins'),
+    axis.ticks.x = element_blank(),
+    plot.title = element_text(face = 2, vjust = 0),
+    plot.subtitle = element_text(colour = 'gray30', vjust = 0)
+  )
+```
+
+<img src="man/figures/README-unnamed-chunk-13-1.png" width="50%" />
 
 # References
 
