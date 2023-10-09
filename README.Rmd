@@ -114,6 +114,7 @@ hb_model <- hb_BHF(
 ```{r}
 saeHB.unit::autoplot(hb_model)
 ```
+
 ## Coefficients
 ```{r}
 summary(hb_model)

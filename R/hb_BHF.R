@@ -221,8 +221,8 @@ hb_BHF <- function(formula, data_unit, data_area, domain, iter.update = 3, iter.
 
     data_area$idx <- 1:m
     area_sampled <- stats::na.omit(data_area)
-    # area_ns <- dplyr::filter(data_area, !idx %in% area_sampled$idx)
-    area_ns <- data_area[-area_sampled$idx, ]
+    area_ns <- dplyr::filter(data_area, !idx %in% area_sampled$idx)
+    # area_ns <- data_area[-area_sampled$idx, ]
     m1 <- nrow(area_sampled)
     m2 <- nrow(area_ns)
     r <- c(area_sampled$idx, area_ns$idx)
