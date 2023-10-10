@@ -21,9 +21,9 @@ Ridson Al Farizal P \<alfrzlp@gmail.com\>
 
 We designed this package to provide several functions for unit level of
 small area estimation (Battese, Harter and Fuller model) using
-hierarchical Bayesian (HB) method. This package also provides a dataset
-produced by a data generation. The `rjags` package is employed to obtain
-parameter estimates
+hierarchical Bayesian (HB) method. It also provides datasets generated
+by data generation and real dataset. The `rjags` package is employed to
+obtain parameter estimates
 
 # Installation
 
@@ -52,8 +52,7 @@ library(ggplot2)
 library(tidyr)
 
 windowsFonts(
-  poppins = windowsFont('poppins'),
-  tnr = windowsFont('Times New Roman')
+  poppins = windowsFont('poppins')
 )
 ```
 
@@ -108,7 +107,7 @@ corn_model <- hb_unit(
 )
 ```
 
-![](man/figures/README-unnamed-chunk-7-1.png)<!-- -->![](man/figures/README-unnamed-chunk-7-2.png)<!-- -->
+<img src="man/figures/README-unnamed-chunk-7-1.png" height="50%" /><img src="man/figures/README-unnamed-chunk-7-2.png" height="50%" />
 
     #>                   Mean         SD       2.5%        25%        50%        75%
     #> intercept    0.1552265  0.7415844 -1.3078113 -0.3262636  0.1458748  0.6601395
@@ -156,12 +155,12 @@ hb_model <- hb_unit(
   iter.update = 30,
   plot = FALSE
 )
-#> Update 2/30 | ■■■                                7% | ETA:  1m Update 3/30 | ■■■■                              10% | ETA:  1m Update 4/30 | ■■■■■                             13% | ETA:  1m Update 5/30 | ■■■■■■                            17% | ETA:  2m Update 6/30 | ■■■■■■■                           20% | ETA:  1m Update 7/30 | ■■■■■■■■                          23% | ETA:  1m Update 8/30 | ■■■■■■■■■                         27% | ETA:  1m Update 9/30 | ■■■■■■■■■■                        30% | ETA:  1m Update 10/30 | ■■■■■■■■■■■                       33% | ETA:  1m Update 11/30 | ■■■■■■■■■■■■                      37% | ETA:  1m Update 12/30 | ■■■■■■■■■■■■■                     40% | ETA:  1m Update 13/30 | ■■■■■■■■■■■■■■                    43% | ETA:  1m Update 14/30 | ■■■■■■■■■■■■■■■                   47% | ETA:  1m Update 15/30 | ■■■■■■■■■■■■■■■■                  50% | ETA:  1m Update 16/30 | ■■■■■■■■■■■■■■■■■                 53% | ETA:  1m Update 17/30 | ■■■■■■■■■■■■■■■■■■                57% | ETA:  1m Update 18/30 | ■■■■■■■■■■■■■■■■■■■               60% | ETA:  1m Update 19/30 | ■■■■■■■■■■■■■■■■■■■■              63% | ETA: 48s Update 20/30 | ■■■■■■■■■■■■■■■■■■■■■             67% | ETA: 44s Update 21/30 | ■■■■■■■■■■■■■■■■■■■■■■            70% | ETA: 40s Update 22/30 | ■■■■■■■■■■■■■■■■■■■■■■■           73% | ETA: 35s Update 23/30 | ■■■■■■■■■■■■■■■■■■■■■■■■          77% | ETA: 31s Update 24/30 | ■■■■■■■■■■■■■■■■■■■■■■■■■         80% | ETA: 27s Update 25/30 | ■■■■■■■■■■■■■■■■■■■■■■■■■■        83% | ETA: 22s Update 26/30 | ■■■■■■■■■■■■■■■■■■■■■■■■■■■       87% | ETA: 18s Update 27/30 | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■      90% | ETA: 13s Update 28/30 | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■     93% | ETA:  9s Update 29/30 | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■    97% | ETA:  4s                                                                  
+#> Update 2/30 | ■■■                                7% | ETA:  1m Update 3/30 | ■■■■                              10% | ETA:  1m Update 4/30 | ■■■■■                             13% | ETA:  1m Update 5/30 | ■■■■■■                            17% | ETA:  2m Update 6/30 | ■■■■■■■                           20% | ETA:  2m Update 7/30 | ■■■■■■■■                          23% | ETA:  1m Update 8/30 | ■■■■■■■■■                         27% | ETA:  1m Update 9/30 | ■■■■■■■■■■                        30% | ETA:  1m Update 10/30 | ■■■■■■■■■■■                       33% | ETA:  1m Update 11/30 | ■■■■■■■■■■■■                      37% | ETA:  1m Update 12/30 | ■■■■■■■■■■■■■                     40% | ETA:  1m Update 13/30 | ■■■■■■■■■■■■■■                    43% | ETA:  1m Update 14/30 | ■■■■■■■■■■■■■■■                   47% | ETA:  1m Update 15/30 | ■■■■■■■■■■■■■■■■                  50% | ETA:  1m Update 16/30 | ■■■■■■■■■■■■■■■■■                 53% | ETA:  1m Update 17/30 | ■■■■■■■■■■■■■■■■■■                57% | ETA:  1m Update 18/30 | ■■■■■■■■■■■■■■■■■■■               60% | ETA: 48s Update 19/30 | ■■■■■■■■■■■■■■■■■■■■              63% | ETA: 44s Update 20/30 | ■■■■■■■■■■■■■■■■■■■■■             67% | ETA: 40s Update 21/30 | ■■■■■■■■■■■■■■■■■■■■■■            70% | ETA: 36s Update 22/30 | ■■■■■■■■■■■■■■■■■■■■■■■           73% | ETA: 32s Update 23/30 | ■■■■■■■■■■■■■■■■■■■■■■■■          77% | ETA: 28s Update 24/30 | ■■■■■■■■■■■■■■■■■■■■■■■■■         80% | ETA: 24s Update 25/30 | ■■■■■■■■■■■■■■■■■■■■■■■■■■        83% | ETA: 20s Update 26/30 | ■■■■■■■■■■■■■■■■■■■■■■■■■■■       87% | ETA: 16s Update 27/30 | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■      90% | ETA: 12s Update 28/30 | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■     93% | ETA:  8s Update 29/30 | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■    97% | ETA:  4s                                                                  
 #> ── Coefficient ─────────────────────────────────────────────────────────────────
-#>                Mean        SD      2.5%       25%       50%       75%  97.5%
-#> intercept 0.3956492 0.0617641 0.2782538 0.3541377 0.3959184 0.4381824 0.5155
-#> x1        2.0299674 0.0025044 2.0250598 2.0282458 2.0299535 2.0316761 2.0348
-#> x2        3.0231057 0.0024531 3.0182595 3.0215433 3.0231084 3.0246654 3.0280
+#>               Mean       SD     2.5%      25%      50%      75%  97.5%
+#> intercept 0.378852 0.062256 0.252646 0.337971 0.379439 0.419977 0.5013
+#> x1        2.030510 0.002474 2.025838 2.028792 2.030444 2.032235 2.0353
+#> x2        3.023038 0.002416 3.018342 3.021392 3.023045 3.024691 3.0279
 ```
 
 ## Autocorelation, Trace and Density plot
@@ -176,10 +175,10 @@ saeHB.unit::autoplot(hb_model)
 
 ``` r
 summary(hb_model)
-#>                Mean        SD      2.5%       25%       50%       75%  97.5%
-#> intercept 0.3956492 0.0617641 0.2782538 0.3541377 0.3959184 0.4381824 0.5155
-#> x1        2.0299674 0.0025044 2.0250598 2.0282458 2.0299535 2.0316761 2.0348
-#> x2        3.0231057 0.0024531 3.0182595 3.0215433 3.0231084 3.0246654 3.0280
+#>               Mean       SD     2.5%      25%      50%      75%  97.5%
+#> intercept 0.378852 0.062256 0.252646 0.337971 0.379439 0.419977 0.5013
+#> x1        2.030510 0.002474 2.025838 2.028792 2.030444 2.032235 2.0353
+#> x2        3.023038 0.002416 3.018342 3.021392 3.023045 3.024691 3.0279
 ```
 
 ``` r
