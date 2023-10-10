@@ -76,7 +76,7 @@ Xarea <- cornsoybeanmeans %>%
 head(Xarea)
 ```
 ### Model
-```{r echo=TRUE, message=FALSE, out.height="50%"}
+```{r echo=TRUE,cache=TRUE, message=FALSE, fig.height=3}
 corn_model <- hb_unit(
    CornHec ~ SoyBeansPix + CornPix,
    data_unit = cornsoybean,
@@ -98,7 +98,7 @@ head(dummy_unit)
 head(dummy_area)
 ```
 ### Model
-```{r}
+```{r, cache=TRUE}
 hb_model <- hb_unit(
   formula = y_di ~ x1 + x2,
   data_unit = dummy_unit,
@@ -110,7 +110,7 @@ hb_model <- hb_unit(
 ```
 
 ## Autocorelation, Trace and Density plot
-```{r}
+```{r, fig.height=3}
 saeHB.unit::autoplot(hb_model)
 ```
 
