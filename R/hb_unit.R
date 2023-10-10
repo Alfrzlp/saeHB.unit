@@ -37,7 +37,7 @@
 #'       SoyBeansPix = MeanSoyBeansPixPerSeg
 #'    )
 #'
-#' corn_model <- hb_BHF(
+#' corn_model <- hb_unit(
 #'    CornHec ~ SoyBeansPix + CornPix,
 #'    data_unit = cornsoybean,
 #'    data_area = Xarea,
@@ -46,7 +46,7 @@
 #' )
 #'
 
-hb_BHF <- function(formula, data_unit, data_area, domain, iter.update = 3, iter.mcmc = 10000, coef, var.coef, thin = 3, burn.in = 2000, tau.u = 1, seed = 1, quiet = TRUE, plot = TRUE){
+hb_unit <- function(formula, data_unit, data_area, domain, iter.update = 3, iter.mcmc = 10000, coef, var.coef, thin = 3, burn.in = 2000, tau.u = 1, seed = 1, quiet = TRUE, plot = TRUE){
   result <- list(Est = NA, refVar = NA, coefficient = NA, result_mcmc = NA)
   formuladata <- stats::model.frame(formula, data_unit, na.action = NULL)
 
@@ -217,12 +217,16 @@ hb_BHF <- function(formula, data_unit, data_area, domain, iter.update = 3, iter.
 
     unit_sampled <- stats::na.omit(data_unit)
     M1 <- nrow(unit_sampled)
-    d1 <- .get_variable(unit_sampled, domain)
 
+    ntab <- table(unit_sampled[[domain]])
+    ntab <- ntab[ntab != 0]
+    d1 <- rep(1:length(ntab), ntab)
+
+    id_sampled <- names(ntab)
     data_area$idx <- 1:m
-    area_sampled <- stats::na.omit(data_area)
-    area_ns <- dplyr::filter(data_area, !idx %in% area_sampled$idx)
-    # area_ns <- data_area[-area_sampled$idx, ]
+    area_sampled <- data_area[data_area[[domain]] %in% id_sampled, ]
+    area_ns <- data_area[!data_area[[domain]] %in% id_sampled, ]
+
     m1 <- nrow(area_sampled)
     m2 <- nrow(area_ns)
     r <- c(area_sampled$idx, area_ns$idx)

@@ -15,7 +15,7 @@
 #'       SoyBeansPix = MeanSoyBeansPixPerSeg
 #'    )
 #'
-#' corn_model <- hb_BHF(
+#' corn_model <- hb_unit(
 #'    CornHec ~ SoyBeansPix + CornPix,
 #'    data_unit = cornsoybean,
 #'    data_area = Xarea,

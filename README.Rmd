@@ -78,7 +78,7 @@ head(Xarea)
 ```
 ### Model
 ```{r echo=TRUE, message=FALSE}
-corn_model <- hb_BHF(
+corn_model <- hb_unit(
    CornHec ~ SoyBeansPix + CornPix,
    data_unit = cornsoybean,
    data_area = Xarea,
@@ -100,7 +100,7 @@ head(dummy_area)
 ```
 ### Model
 ```{r}
-hb_model <- hb_BHF(
+hb_model <- hb_unit(
   formula = y_di ~ x1 + x2,
   data_unit = dummy_unit,
   data_area = dummy_area,

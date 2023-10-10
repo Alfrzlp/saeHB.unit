@@ -3,4 +3,4 @@
 S3method(autoplot,saehb)
 S3method(summary,saehb)
 export(autoplot)
-export(hb_BHF)
+export(hb_unit)

@@ -99,7 +99,7 @@ head(Xarea)
 ### Model
 
 ``` r
-corn_model <- hb_BHF(
+corn_model <- hb_unit(
    CornHec ~ SoyBeansPix + CornPix,
    data_unit = cornsoybean,
    data_area = Xarea,
@@ -148,7 +148,7 @@ head(dummy_area)
 ### Model
 
 ``` r
-hb_model <- hb_BHF(
+hb_model <- hb_unit(
   formula = y_di ~ x1 + x2,
   data_unit = dummy_unit,
   data_area = dummy_area,
@@ -156,106 +156,12 @@ hb_model <- hb_BHF(
   iter.update = 30,
   plot = FALSE
 )
-#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
-#> Variable muT not found
-#> Update 2/30 | ■■■ 7% | ETA: 7m
-#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
-#> Variable muT not found
-#> Update 3/30 | ■■■■ 10% | ETA: 6m
-#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
-#> Variable muT not found
-#> Update 4/30 | ■■■■■ 13% | ETA: 6m
-#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
-#> Variable muT not found
-#> Update 5/30 | ■■■■■■ 17% | ETA: 5m
-#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
-#> Variable muT not found
-#> Update 6/30 | ■■■■■■■ 20% | ETA: 5m
-#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
-#> Variable muT not found
-#> Update 7/30 | ■■■■■■■■ 23% | ETA: 5m
-#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
-#> Variable muT not found
-#> Update 8/30 | ■■■■■■■■■ 27% | ETA: 4m
-#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
-#> Variable muT not found
-#> Update 9/30 | ■■■■■■■■■■ 30% | ETA: 4m
-#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
-#> Variable muT not found
-#> Update 10/30 | ■■■■■■■■■■■ 33% | ETA: 3m
-#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
-#> Variable muT not found
-#> Update 11/30 | ■■■■■■■■■■■■ 37% | ETA: 3m
-#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
-#> Variable muT not found
-#> Update 12/30 | ■■■■■■■■■■■■■ 40% | ETA: 3m
-#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
-#> Variable muT not found
-#> Update 13/30 | ■■■■■■■■■■■■■■ 43% | ETA: 3m
-#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
-#> Variable muT not found
-#> Update 14/30 | ■■■■■■■■■■■■■■■ 47% | ETA: 2m
-#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
-#> Variable muT not found
-#> Update 15/30 | ■■■■■■■■■■■■■■■■ 50% | ETA: 2m
-#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
-#> Variable muT not found
-#> Update 16/30 | ■■■■■■■■■■■■■■■■■ 53% | ETA: 2m
-#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
-#> Variable muT not found
-#> Update 17/30 | ■■■■■■■■■■■■■■■■■■ 57% | ETA: 2m
-#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
-#> Variable muT not found
-#> Update 18/30 | ■■■■■■■■■■■■■■■■■■■ 60% | ETA: 2m
-#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
-#> Variable muT not found
-#> Update 19/30 | ■■■■■■■■■■■■■■■■■■■■ 63% | ETA: 2m
-#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
-#> Variable muT not found
-#> Update 20/30 | ■■■■■■■■■■■■■■■■■■■■■ 67% | ETA: 1m
-#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
-#> Variable muT not found
-#> Update 21/30 | ■■■■■■■■■■■■■■■■■■■■■■ 70% | ETA: 1m
-#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
-#> Variable muT not found
-#> Update 22/30 | ■■■■■■■■■■■■■■■■■■■■■■■ 73% | ETA: 1m
-#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
-#> Variable muT not found
-#> Update 23/30 | ■■■■■■■■■■■■■■■■■■■■■■■■ 77% | ETA: 1m
-#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
-#> Variable muT not found
-#> Update 24/30 | ■■■■■■■■■■■■■■■■■■■■■■■■■ 80% | ETA: 47s
-#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
-#> Variable muT not found
-#> Update 25/30 | ■■■■■■■■■■■■■■■■■■■■■■■■■■ 83% | ETA:
-#> 39s
-#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
-#> Variable muT not found
-#> Update 26/30 | ■■■■■■■■■■■■■■■■■■■■■■■■■■■ 87% | ETA:
-#> 31s
-#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
-#> Variable muT not found
-#> Update 27/30 | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 90% |
-#> ETA: 23s
-#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
-#> Variable muT not found
-#> Update 28/30 | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 93% |
-#> ETA: 15s
-#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
-#> Variable muT not found
-#> Update 29/30 | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 97%
-#> | ETA: 7s
-#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
-#> Variable muT not found
-#> 
-#> Warning in FUN(X[[i]], ...): Failed to set trace monitor for muT
-#> Variable muT not found
-#> 
+#> Update 2/30 | ■■■                                7% | ETA:  1m Update 3/30 | ■■■■                              10% | ETA:  1m Update 4/30 | ■■■■■                             13% | ETA:  1m Update 5/30 | ■■■■■■                            17% | ETA:  2m Update 6/30 | ■■■■■■■                           20% | ETA:  1m Update 7/30 | ■■■■■■■■                          23% | ETA:  1m Update 8/30 | ■■■■■■■■■                         27% | ETA:  1m Update 9/30 | ■■■■■■■■■■                        30% | ETA:  1m Update 10/30 | ■■■■■■■■■■■                       33% | ETA:  1m Update 11/30 | ■■■■■■■■■■■■                      37% | ETA:  1m Update 12/30 | ■■■■■■■■■■■■■                     40% | ETA:  1m Update 13/30 | ■■■■■■■■■■■■■■                    43% | ETA:  1m Update 14/30 | ■■■■■■■■■■■■■■■                   47% | ETA:  1m Update 15/30 | ■■■■■■■■■■■■■■■■                  50% | ETA:  1m Update 16/30 | ■■■■■■■■■■■■■■■■■                 53% | ETA:  1m Update 17/30 | ■■■■■■■■■■■■■■■■■■                57% | ETA:  1m Update 18/30 | ■■■■■■■■■■■■■■■■■■■               60% | ETA:  1m Update 19/30 | ■■■■■■■■■■■■■■■■■■■■              63% | ETA: 48s Update 20/30 | ■■■■■■■■■■■■■■■■■■■■■             67% | ETA: 44s Update 21/30 | ■■■■■■■■■■■■■■■■■■■■■■            70% | ETA: 40s Update 22/30 | ■■■■■■■■■■■■■■■■■■■■■■■           73% | ETA: 35s Update 23/30 | ■■■■■■■■■■■■■■■■■■■■■■■■          77% | ETA: 31s Update 24/30 | ■■■■■■■■■■■■■■■■■■■■■■■■■         80% | ETA: 27s Update 25/30 | ■■■■■■■■■■■■■■■■■■■■■■■■■■        83% | ETA: 22s Update 26/30 | ■■■■■■■■■■■■■■■■■■■■■■■■■■■       87% | ETA: 18s Update 27/30 | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■      90% | ETA: 13s Update 28/30 | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■     93% | ETA:  9s Update 29/30 | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■    97% | ETA:  4s                                                                  
 #> ── Coefficient ─────────────────────────────────────────────────────────────────
 #>                Mean        SD      2.5%       25%       50%       75%  97.5%
-#> intercept 0.4352847 0.0574592 0.3211631 0.3966216 0.4353258 0.4737573 0.5488
-#> x1        2.0297136 0.0025724 2.0247324 2.0280119 2.0296175 2.0314465 2.0348
-#> x2        3.0223823 0.0024776 3.0177416 3.0206645 3.0223584 3.0240159 3.0274
+#> intercept 0.3956492 0.0617641 0.2782538 0.3541377 0.3959184 0.4381824 0.5155
+#> x1        2.0299674 0.0025044 2.0250598 2.0282458 2.0299535 2.0316761 2.0348
+#> x2        3.0231057 0.0024531 3.0182595 3.0215433 3.0231084 3.0246654 3.0280
 ```
 
 ## Autocorelation, Trace and Density plot
@@ -271,9 +177,9 @@ saeHB.unit::autoplot(hb_model)
 ``` r
 summary(hb_model)
 #>                Mean        SD      2.5%       25%       50%       75%  97.5%
-#> intercept 0.4352847 0.0574592 0.3211631 0.3966216 0.4353258 0.4737573 0.5488
-#> x1        2.0297136 0.0025724 2.0247324 2.0280119 2.0296175 2.0314465 2.0348
-#> x2        3.0223823 0.0024776 3.0177416 3.0206645 3.0223584 3.0240159 3.0274
+#> intercept 0.3956492 0.0617641 0.2782538 0.3541377 0.3959184 0.4381824 0.5155
+#> x1        2.0299674 0.0025044 2.0250598 2.0282458 2.0299535 2.0316761 2.0348
+#> x2        3.0231057 0.0024531 3.0182595 3.0215433 3.0231084 3.0246654 3.0280
 ```
 
 ``` r
