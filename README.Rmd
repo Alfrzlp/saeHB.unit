@@ -102,7 +102,7 @@ corn_hb <- hb_unit(
 )
 ```
 
-### Comparison
+### Comparison of estimates and RSE
 ```{r, dpi=500, fig.height=3, fig.width=7}
 data.frame(
   id = 1:12,
