@@ -110,38 +110,43 @@ corn_eblup <- pbmseBHF(
 )
 #> 
 #> Bootstrap procedure with B = 50 iterations starts.
-#> b = 1 
-#> b = 2
 #> boundary (singular) fit: see help('isSingular')
-#> b = 3 
+#> b = 1 
+#> b = 2 
+#> b = 3
+#> boundary (singular) fit: see help('isSingular')
 #> b = 4 
 #> b = 5 
-#> b = 6 
-#> b = 7 
-#> b = 8
+#> b = 6
 #> boundary (singular) fit: see help('isSingular')
+#> b = 7
+#> boundary (singular) fit: see help('isSingular')
+#> b = 8 
 #> b = 9 
 #> b = 10 
-#> b = 11
-#> boundary (singular) fit: see help('isSingular')
+#> b = 11 
 #> b = 12 
-#> b = 13 
+#> b = 13
+#> boundary (singular) fit: see help('isSingular')
 #> b = 14 
 #> b = 15 
-#> b = 16 
+#> b = 16
+#> boundary (singular) fit: see help('isSingular')
 #> b = 17
 #> boundary (singular) fit: see help('isSingular')
-#> b = 18
-#> boundary (singular) fit: see help('isSingular')
+#> b = 18 
 #> b = 19 
 #> b = 20 
 #> b = 21 
 #> b = 22 
-#> b = 23 
+#> b = 23
+#> boundary (singular) fit: see help('isSingular')
 #> b = 24 
 #> b = 25 
-#> b = 26 
-#> b = 27 
+#> b = 26
+#> boundary (singular) fit: see help('isSingular')
+#> b = 27
+#> boundary (singular) fit: see help('isSingular')
 #> b = 28 
 #> b = 29 
 #> b = 30 
@@ -150,22 +155,22 @@ corn_eblup <- pbmseBHF(
 #> b = 33 
 #> b = 34 
 #> b = 35 
-#> b = 36
-#> boundary (singular) fit: see help('isSingular')
+#> b = 36 
 #> b = 37 
-#> b = 38 
+#> b = 38
+#> boundary (singular) fit: see help('isSingular')
 #> b = 39 
-#> b = 40
-#> boundary (singular) fit: see help('isSingular')
-#> b = 41
-#> boundary (singular) fit: see help('isSingular')
+#> b = 40 
+#> b = 41 
 #> b = 42 
-#> b = 43 
-#> b = 44 
-#> b = 45
+#> b = 43
 #> boundary (singular) fit: see help('isSingular')
+#> b = 44
+#> boundary (singular) fit: see help('isSingular')
+#> b = 45 
 #> b = 46 
-#> b = 47 
+#> b = 47
+#> boundary (singular) fit: see help('isSingular')
 #> b = 48 
 #> b = 49 
 #> b = 50

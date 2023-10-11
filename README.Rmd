@@ -77,7 +77,7 @@ Xarea <- cornsoybeanmeans %>%
 head(Xarea)
 ```
 ### EBLUP model
-```{r}
+```{r, cahce = TRUE}
 Popn <- cornsoybeanmeans %>% 
   dplyr::select(CountyIndex, PopnSegments)
 
