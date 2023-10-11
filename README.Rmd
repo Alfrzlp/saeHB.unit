@@ -200,6 +200,7 @@ data.frame(
   pivot_longer(-1, names_to = "metode", values_to = "rse") %>%
   ggplot(aes(x = id, y = rse, col = metode)) +
   geom_line() +
+  geom_vline(xintercept = c(14, 16, 22, 27, 29), color = 'red', alpha = 0.2, lwd = 3) +
   scale_color_discrete(
     labels = c('HB with NA', 'Parameter')
   ) +
