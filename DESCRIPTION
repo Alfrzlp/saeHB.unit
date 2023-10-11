@@ -2,10 +2,9 @@ Package: saeHB.unit
 Type: Package
 Title: Basic Unit Level Model using Hierarchical Bayesian Approach
 Version: 0.1.0
-Author: Ridson Al Farizal, Azka Ubaidillah
+Author: Ridson Al Farizal P, Azka Ubaidillah
 Maintainer: Ridson Al Farizal <alfrzlp@gmail.com>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Description: This package provides functions for small area estimation unit level models (Battese, Harter and Fuller model) with a Bayesian Hierarchical approach
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
