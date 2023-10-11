@@ -171,7 +171,8 @@ hb_model <- hb_unit(
 This dataset contains NA in 5 domains out of 30 domains.
 ```{r}
 dummy_unit %>% 
-  dplyr::filter(is.na(y_di))
+  dplyr::filter(is.na(y_di)) %>% 
+  sample_n(size = 5)
 ```
 ```{r}
 dummy_unit %>% 
