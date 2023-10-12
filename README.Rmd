@@ -77,7 +77,7 @@ Xarea <- cornsoybeanmeans %>%
 head(Xarea)
 ```
 ### EBLUP model
-```{r, cahce = TRUE}
+```{r}
 Popn <- cornsoybeanmeans %>% 
   dplyr::select(CountyIndex, PopnSegments)
 
@@ -92,7 +92,7 @@ rse_eblup <- sqrt(corn_eblup$mse$mse) * 100 / corn_eblup$est$eblup$eblup
 ```
 
 ### HB model
-```{r echo=TRUE,cache=TRUE, message=FALSE, fig.height=3}
+```{r echo=TRUE, message=FALSE, fig.height=3}
 corn_hb <- hb_unit(
    CornHec ~ SoyBeansPix + CornPix,
    data_unit = cornsoybean,
@@ -157,7 +157,7 @@ head(dummy_unit)
 head(dummy_area)
 ```
 ### Model
-```{r, cache=TRUE}
+```{r}
 hb_model <- hb_unit(
   formula = y_di ~ x1 + x2,
   data_unit = dummy_unit,

@@ -112,18 +112,18 @@ corn_eblup <- pbmseBHF(
 #> Bootstrap procedure with B = 50 iterations starts.
 #> boundary (singular) fit: see help('isSingular')
 #> b = 1 
-#> b = 2 
-#> b = 3
+#> b = 2
 #> boundary (singular) fit: see help('isSingular')
-#> b = 4 
+#> b = 3 
+#> b = 4
+#> boundary (singular) fit: see help('isSingular')
 #> b = 5 
-#> b = 6
-#> boundary (singular) fit: see help('isSingular')
-#> b = 7
-#> boundary (singular) fit: see help('isSingular')
+#> b = 6 
+#> b = 7 
 #> b = 8 
 #> b = 9 
-#> b = 10 
+#> b = 10
+#> boundary (singular) fit: see help('isSingular')
 #> b = 11 
 #> b = 12 
 #> b = 13
@@ -135,44 +135,44 @@ corn_eblup <- pbmseBHF(
 #> b = 17
 #> boundary (singular) fit: see help('isSingular')
 #> b = 18 
-#> b = 19 
+#> b = 19
+#> boundary (singular) fit: see help('isSingular')
 #> b = 20 
 #> b = 21 
 #> b = 22 
-#> b = 23
-#> boundary (singular) fit: see help('isSingular')
+#> b = 23 
 #> b = 24 
 #> b = 25 
 #> b = 26
 #> boundary (singular) fit: see help('isSingular')
-#> b = 27
-#> boundary (singular) fit: see help('isSingular')
+#> b = 27 
 #> b = 28 
 #> b = 29 
 #> b = 30 
 #> b = 31 
-#> b = 32 
-#> b = 33 
+#> b = 32
+#> boundary (singular) fit: see help('isSingular')
+#> b = 33
+#> boundary (singular) fit: see help('isSingular')
 #> b = 34 
 #> b = 35 
 #> b = 36 
 #> b = 37 
-#> b = 38
-#> boundary (singular) fit: see help('isSingular')
+#> b = 38 
 #> b = 39 
-#> b = 40 
+#> b = 40
+#> boundary (singular) fit: see help('isSingular')
 #> b = 41 
 #> b = 42 
-#> b = 43
-#> boundary (singular) fit: see help('isSingular')
-#> b = 44
-#> boundary (singular) fit: see help('isSingular')
+#> b = 43 
+#> b = 44 
 #> b = 45 
 #> b = 46 
-#> b = 47
+#> b = 47 
+#> b = 48
 #> boundary (singular) fit: see help('isSingular')
-#> b = 48 
-#> b = 49 
+#> b = 49
+#> boundary (singular) fit: see help('isSingular')
 #> b = 50
 
 rse_eblup <- sqrt(corn_eblup$mse$mse) * 100 / corn_eblup$est$eblup$eblup
@@ -286,12 +286,12 @@ hb_model <- hb_unit(
   iter.update = 30,
   plot = FALSE
 )
-#> Update 2/30 | ■■■                                7% | ETA:  1m Update 3/30 | ■■■■                              10% | ETA:  1m Update 4/30 | ■■■■■                             13% | ETA:  2m Update 5/30 | ■■■■■■                            17% | ETA:  2m Update 6/30 | ■■■■■■■                           20% | ETA:  2m Update 7/30 | ■■■■■■■■                          23% | ETA:  2m Update 8/30 | ■■■■■■■■■                         27% | ETA:  1m Update 9/30 | ■■■■■■■■■■                        30% | ETA:  1m Update 10/30 | ■■■■■■■■■■■                       33% | ETA:  1m Update 11/30 | ■■■■■■■■■■■■                      37% | ETA:  1m Update 12/30 | ■■■■■■■■■■■■■                     40% | ETA:  1m Update 13/30 | ■■■■■■■■■■■■■■                    43% | ETA:  1m Update 14/30 | ■■■■■■■■■■■■■■■                   47% | ETA:  1m Update 15/30 | ■■■■■■■■■■■■■■■■                  50% | ETA:  1m Update 16/30 | ■■■■■■■■■■■■■■■■■                 53% | ETA:  1m Update 17/30 | ■■■■■■■■■■■■■■■■■■                57% | ETA:  1m Update 18/30 | ■■■■■■■■■■■■■■■■■■■               60% | ETA:  1m Update 19/30 | ■■■■■■■■■■■■■■■■■■■■              63% | ETA: 48s Update 20/30 | ■■■■■■■■■■■■■■■■■■■■■             67% | ETA: 43s Update 21/30 | ■■■■■■■■■■■■■■■■■■■■■■            70% | ETA: 39s Update 22/30 | ■■■■■■■■■■■■■■■■■■■■■■■           73% | ETA: 35s Update 23/30 | ■■■■■■■■■■■■■■■■■■■■■■■■          77% | ETA: 31s Update 24/30 | ■■■■■■■■■■■■■■■■■■■■■■■■■         80% | ETA: 26s Update 25/30 | ■■■■■■■■■■■■■■■■■■■■■■■■■■        83% | ETA: 22s Update 26/30 | ■■■■■■■■■■■■■■■■■■■■■■■■■■■       87% | ETA: 18s Update 27/30 | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■      90% | ETA: 13s Update 28/30 | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■     93% | ETA:  9s Update 29/30 | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■    97% | ETA:  4s                                                                  
+#> Update 2/30 | ■■■                                7% | ETA:  2m Update 3/30 | ■■■■                              10% | ETA:  2m Update 4/30 | ■■■■■                             13% | ETA:  2m Update 5/30 | ■■■■■■                            17% | ETA:  3m Update 6/30 | ■■■■■■■                           20% | ETA:  3m Update 7/30 | ■■■■■■■■                          23% | ETA:  3m Update 8/30 | ■■■■■■■■■                         27% | ETA:  3m Update 9/30 | ■■■■■■■■■■                        30% | ETA:  3m Update 10/30 | ■■■■■■■■■■■                       33% | ETA:  3m Update 11/30 | ■■■■■■■■■■■■                      37% | ETA:  3m Update 12/30 | ■■■■■■■■■■■■■                     40% | ETA:  3m Update 13/30 | ■■■■■■■■■■■■■■                    43% | ETA:  3m Update 14/30 | ■■■■■■■■■■■■■■■                   47% | ETA:  3m Update 15/30 | ■■■■■■■■■■■■■■■■                  50% | ETA:  3m Update 16/30 | ■■■■■■■■■■■■■■■■■                 53% | ETA:  3m Update 17/30 | ■■■■■■■■■■■■■■■■■■                57% | ETA:  2m Update 18/30 | ■■■■■■■■■■■■■■■■■■■               60% | ETA:  2m Update 19/30 | ■■■■■■■■■■■■■■■■■■■■              63% | ETA:  2m Update 20/30 | ■■■■■■■■■■■■■■■■■■■■■             67% | ETA:  2m Update 21/30 | ■■■■■■■■■■■■■■■■■■■■■■            70% | ETA:  2m Update 22/30 | ■■■■■■■■■■■■■■■■■■■■■■■           73% | ETA:  2m Update 23/30 | ■■■■■■■■■■■■■■■■■■■■■■■■          77% | ETA:  1m Update 24/30 | ■■■■■■■■■■■■■■■■■■■■■■■■■         80% | ETA:  1m Update 25/30 | ■■■■■■■■■■■■■■■■■■■■■■■■■■        83% | ETA:  1m Update 26/30 | ■■■■■■■■■■■■■■■■■■■■■■■■■■■       87% | ETA: 46s Update 27/30 | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■      90% | ETA: 34s Update 28/30 | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■     93% | ETA: 23s Update 29/30 | ■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■    97% | ETA: 11s                                                                  
 #> ── Coefficient ─────────────────────────────────────────────────────────────────
 #>                Mean        SD      2.5%       25%       50%       75%  97.5%
-#> intercept 0.3727118 0.0618364 0.2510833 0.3317597 0.3735558 0.4132707 0.4953
-#> x1        2.0305772 0.0023850 2.0259770 2.0289838 2.0304987 2.0321898 2.0352
-#> x2        3.0235272 0.0024196 3.0187927 3.0219169 3.0235365 3.0251780 3.0282
+#> intercept 0.3948102 0.0573688 0.2829102 0.3558277 0.3952609 0.4337828 0.5068
+#> x1        2.0298812 0.0022426 2.0256112 2.0282862 2.0298828 2.0314088 2.0343
+#> x2        3.0231039 0.0023648 3.0184731 3.0215362 3.0231553 3.0246763 3.0278
 ```
 
 This dataset contains NA in 5 domains out of 30 domains.
@@ -301,11 +301,11 @@ dummy_unit %>%
   dplyr::filter(is.na(y_di)) %>% 
   sample_n(size = 5)
 #>   domain y_di       x1       x2
-#> 1    d16   NA 13.47897 19.92013
-#> 2    d22   NA 10.25786 15.74032
-#> 3    d27   NA 17.78283 17.57790
-#> 4    d14   NA 19.29957 12.19052
-#> 5    d22   NA 12.26944 10.24241
+#> 1    d22   NA 19.00794 11.30174
+#> 2    d27   NA 19.09201 12.22442
+#> 3    d27   NA 13.87459 13.50042
+#> 4    d22   NA 12.26944 10.24241
+#> 5    d27   NA 13.49637 11.45061
 ```
 
 ``` r
@@ -333,9 +333,9 @@ saeHB.unit::autoplot(hb_model)
 ``` r
 summary(hb_model)
 #>                Mean        SD      2.5%       25%       50%       75%  97.5%
-#> intercept 0.3727118 0.0618364 0.2510833 0.3317597 0.3735558 0.4132707 0.4953
-#> x1        2.0305772 0.0023850 2.0259770 2.0289838 2.0304987 2.0321898 2.0352
-#> x2        3.0235272 0.0024196 3.0187927 3.0219169 3.0235365 3.0251780 3.0282
+#> intercept 0.3948102 0.0573688 0.2829102 0.3558277 0.3952609 0.4337828 0.5068
+#> x1        2.0298812 0.0022426 2.0256112 2.0282862 2.0298828 2.0314088 2.0343
+#> x2        3.0231039 0.0023648 3.0184731 3.0215362 3.0231553 3.0246763 3.0278
 ```
 
 ``` r
