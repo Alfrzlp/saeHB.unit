@@ -11,6 +11,9 @@
 
 \item{...}{further arguments passed to or from other methods.}
 }
+\value{
+The function return a \code{data.frame} of beta coefficient from HB model.
+}
 \description{
 Summary sae HB model
 }

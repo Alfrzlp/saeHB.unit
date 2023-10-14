@@ -3,6 +3,7 @@
 #' @param object sae HB model
 #' @param ... further arguments passed to or from other methods.
 #'
+#' @return The function return a \code{data.frame} of beta coefficient from HB model.
 #' @export
 #'
 #' @examples

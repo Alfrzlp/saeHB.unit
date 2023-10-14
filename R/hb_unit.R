@@ -357,9 +357,13 @@ hb_unit <- function(formula, data_unit, data_area, domain, iter.update = 3, iter
   class(result) <- 'saehb'
 
   if (plot) {
+    oldpar <- graphics::par(no.readonly = TRUE)
+    on.exit(graphics::par(oldpar))
+
     graphics::par(mar = c(2, 2, 2, 2))
     coda::autocorr.plot(result_mcmc, col = "brown2", lwd = 2)
     plot(result_mcmc, col = "brown2", lwd = 2)
+
   }
 
   cli::cli_h1('Coefficient')
